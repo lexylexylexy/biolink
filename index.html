@@ -7,28 +7,28 @@
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <link rel="icon" href="placeholder-favicon.png" type="image/png">
   <style>
-    /* GLOBAL RESET */
+
     *{margin:0;padding:0;box-sizing:border-box}
     html,body{height:100%;overflow:hidden;font-family:'Press Start 2P',cursive}
     body{display:flex;flex-direction:column;align-items:center;background:#1a0000}
-    /* BACKGROUND VIDEO */
+
     video.bg-video{position:absolute;top:0;left:0;width:100vw;height:100vh;object-fit:cover;z-index:-1;display:none}
-    /* CLICK‑TO‑START OVERLAY */
+
     .overlay{position:absolute;inset:0;background:rgba(0,0,0,.6);display:flex;justify-content:center;align-items:center;cursor:pointer;color:#ffdddd;font-size:1.5rem;font-weight:bold;z-index:10}
-    /* MAIN PROFILE CARD */
+
     .container{position:relative;z-index:20;display:none;flex-direction:column;align-items:center;text-align:center;color:#ffdddd;gap:1rem;padding:3rem;background:rgba(0,0,0,.4);border-radius:12px;border:1px solid #ffdddd;backdrop-filter:blur(8px);width:33vw;margin-top:3rem}
     .pfp{width:128px;height:128px;border-radius:50%;background:gray;background-size:cover;background-position:center;border:2px solid #ffdddd}
-    /* QUOTE AREA */
+
     .quote{font-size:1.2rem;color:#971616;white-space:normal;border-right:2px solid #ffdddd;animation:blink-caret .8s step-end infinite;min-height:1.4rem;overflow:hidden}
     @keyframes blink-caret{from,to{border-color:transparent}50%{border-color:#ffdddd}}
-    /* VOLUME BUTTON – emoji left */
+
     .volume-toggle{position:absolute;top:1rem;left:1rem;background:transparent;border:1px solid #ffdddd;padding:.5rem;border-radius:12px;cursor:pointer;z-index:30;display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:#ffdddd}
-    /* SOCIAL ICONS */
+
     .social-links{display:flex;gap:1rem;margin-top:.5rem;justify-content:center}
     .social-links a{text-decoration:none;transition:transform .3s}
     .social-icon{width:40px;height:40px;object-fit:contain;filter:drop-shadow(0 0 4px #fff);transition:transform .3s}
     .social-icon:hover{transform:scale(1.1)}
-    /* DISCORD PRESENCE CARD */
+
     .discord-presence{display:none;align-items:center;background:rgba(255,255,255,.08);padding:1rem;border-radius:16px;margin-top:2rem;width:33vw;box-shadow:0 0 12px rgba(0,0,0,.4);backdrop-filter:blur(10px);color:#fff;border:1px solid #fff}
     .discord-avatar{width:56px;height:56px;border-radius:50%;border:2px solid #ffdddd;margin-right:1rem}
     .discord-info{display:flex;flex-direction:column}
@@ -64,27 +64,25 @@
     </div>
   </div>
   <script>
-  /* =============================================================
-     DOMAIN LOCK + ANTI‑COPY / DEV‑TOOLS DETECTION
-     ============================================================= */
+
   (function(){
-    const ALLOWED_HOSTS=['lexylexylexy.github.io','localhost']; // <— replace with your real domain(s)
+    const ALLOWED_HOSTS=['lexylexylexy.github.io','localhost']; 
     if(!ALLOWED_HOSTS.includes(location.hostname)){
       document.documentElement.innerHTML='';
-      return; // stop everything if unauthorized host
+      return; 
     }
 
-    // Disable context menu
+   
     document.addEventListener('contextmenu',e=>e.preventDefault(),{passive:false});
 
-    // Block common shortcuts & dev‑tools keys
+   
     document.addEventListener('keydown',e=>{
       const blockedCombo=(e.ctrlKey||e.metaKey)&&['u','s','c','x','a','i','j','p','o','v'].includes(e.key.toLowerCase());
       const blockedKey=['F12','F6'].includes(e.key);
       if(blockedCombo||blockedKey){e.preventDefault();}
     });
 
-    // Basic dev‑tools open detection (dimension threshold)
+  
     let warned=false;
     setInterval(()=>{
       const threshold=160;
@@ -94,7 +92,7 @@
       }
     },500);
 
-    // Dev‑tools via console trick
+
     const img=new Image();
     Object.defineProperty(img,'id',{get(){
       document.body.innerHTML='';
@@ -102,11 +100,7 @@
     console.log('%c ',img);
   })();
 
-  /* =============================================================
-     PAGE LOGIC (runs only on allowed host)
-     ============================================================= */
 
-  // Simple guards: if body already wiped (unauthorized/dev‑tools) do not execute rest
   if(document.body.innerHTML===''){
     throw new Error('Execution halted');
   }
@@ -142,7 +136,7 @@
   async function runQuoteLoop(){while(true){const current=quotes[quoteIndex%quotes.length];await typeText(current,quoteEl);await new Promise(r=>setTimeout(r,HOLD_TIME));await deleteText(quoteEl);quoteIndex++;}}
   runQuoteLoop();
 
-  /* Discord Presence via Lanyard */
+
   const discordUserId='938646514018943006';
   const badgeMap={1:{name:'Discord Staff',icon:'https://cdn.jsdelivr.net/gh/rauenzi/discord-badges/icons/staff.svg'},2:{name:'Partnered Server Owner',icon:'https://cdn.jsdelivr.net/gh/rauenzi/discord-badges/icons/partner.svg'},4:{name:'HypeSquad Events',icon:'https://cdn.jsdelivr.net/gh/rauenzi/discord-badges/icons/hypesquad.svg'},8:{name:'Bug Hunter Level 1',icon:'https://cdn.jsdelivr.net/gh/rauenzi/discord-badges/icons/bughunter1.svg'},64:{name:'HypeSquad Bravery',icon:'https://cdn.jsdelivr.net/gh/rauenzi/discord-badges/icons/bravery.svg'},128:{name:'HypeSquad Brilliance',icon:'https://cdn.discordapp.com/badge-icons/011940fd013da3f7fb926e4a1cd2e618.png'},256:{name:'HypeSquad Balance',icon:'https://cdn.jsdelivr.net/gh/rauenzi/discord-badges/icons/balance.svg'},512:{name:'Early Supporter',icon:'https://cdn.jsdelivr.net/gh/rauenzi/discord-badges/icons/supporter.svg'},16384:{name:'Bug Hunter Level 2',icon:'https://cdn.jsdelivr.net/gh/rauenzi/discord-badges/icons/bughunter2.svg'},4194304:{name:'Active Developer',icon:'https://cdn.jsdelivr.net/gh/rauenzi/discord-badges/icons/activedev.svg'}};
   function renderBadges(flags){const container=document.getElementById('badgeContainer');container.innerHTML='';Object.keys(badgeMap).forEach(bit=>{if(flags&bit){const badge=badgeMap[bit];const img=document.createElement('img');img.src=badge.icon;img.title=badge.name;container.appendChild(img);}});}
