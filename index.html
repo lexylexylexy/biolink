@@ -24,13 +24,13 @@
     .social-links{display:flex;gap:1rem;margin-top:.5rem;justify-content:center}
     .social-links a{text-decoration:none;transition:transform .3s}
     .social-icon{width:40px;height:40px;object-fit:contain;filter:drop-shadow(0 0 4px #cd2143);transition:transform .3s}
-    .social-icon:hover{transform:scale(1.1)}
+    .social-icon:hover{transform:scale(1.25)}
 
     /* ───────────── Discord presence ───────────── */
     .discord-presence{display:none;align-items:center;background:rgba(255,255,255,.08);padding:1rem;border-radius:16px;margin-top:2rem;width:33vw;box-shadow:0 0 12px rgba(0,0,0,.4);backdrop-filter:blur(10px);color:#ffcfd6;border:1px solid #cd2143;position:relative;height:170px;min-height:170px;overflow:hidden}
     #bannerLayer{position:absolute;inset:0;background-size:cover;background-position:center;background-repeat:no-repeat;z-index:0;opacity:1;transition:opacity .8s ease-in-out}
 
-    .discord-avatar{width:56px;height:56px;border-radius:50%;border:2px solid #cd2143;margin-right:1rem;z-index:1}
+    .discord-avatar{width:56px;height:56px;border-radius:50%;border:2px solid #cd2121;margin-right:1rem;z-index:1}
     .discord-info{display:flex;flex-direction:column;z-index:1}
     .discord-username{display:flex;align-items:center;font-weight:bold;font-size:1.1rem;gap:1rem;color:#ff6060}
     .status-dot{width:12px;height:12px;border-radius:50%;display:inline-block}
@@ -67,7 +67,7 @@
   </div>
 
   <script>
-    (function(){
+        (function(){
     const ALLOWED_HOSTS=['lexylexylexy.github.io','localhost']; 
     if(!ALLOWED_HOSTS.includes(location.hostname)){
       document.documentElement.innerHTML='';
@@ -158,12 +158,15 @@
         const listening = activities.find(a => a.type === 2 && a.name === 'Spotify');
         const custom = activities.find(a => a.type === 4);
 
-        if (listening) activityText = `Listening to ${listening.details}`;
-        else if (playing) activityText = `Playing ${playing.name}`;
-        else if (custom && custom.state) activityText = custom.state;
+        if (listening) {
+  activityText = `<img src="Spotify.png" alt="Spotify" style="height:1.3em;vertical-align:middle;margin-right:.35em;filter:drop-shadow(0 0 4px #ffb6b6);">${listening.details} – ${listening.state}`;
+} else if (playing) {
+  activityText = `🎮 ${playing.name}`;
+} else if (custom && custom.state) {
+  activityText = custom.state;
+}
 
-        document.getElementById('discordStatus').textContent = activityText;
-
+document.getElementById('discordStatus').innerHTML = activityText;
         const badgeContainer = document.getElementById('badgeContainer');
         badgeContainer.innerHTML = '';
         Object.entries(badgeMap).forEach(([bit, url]) => {
