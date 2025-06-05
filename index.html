@@ -67,45 +67,45 @@
   </div>
 
   <script>
-        (function(){
-    const ALLOWED_HOSTS=['lexylexylexy.github.io','localhost']; 
-    if(!ALLOWED_HOSTS.includes(location.hostname)){
-      document.documentElement.innerHTML='';
-      return; 
-    }
-
-   
-    document.addEventListener('contextmenu',e=>e.preventDefault(),{passive:false});
-
-   
-    document.addEventListener('keydown',e=>{
-      const blockedCombo=(e.ctrlKey||e.metaKey)&&['u','s','c','x','a','i','j','p','o','v'].includes(e.key.toLowerCase());
-      const blockedKey=['F12','F6'].includes(e.key);
-      if(blockedCombo||blockedKey){e.preventDefault();}
-    });
-
-  
-    let warned=false;
-    setInterval(()=>{
-      const threshold=160;
-      if(((window.outerWidth-window.innerWidth)>threshold||(window.outerHeight-window.innerHeight)>threshold)&&!warned){
-        warned=true;
-        document.body.innerHTML='';
-      }
-    },500);
+    (function(){
+const ALLOWED_HOSTS=['lexylexylexy.github.io','localhost']; 
+if(!ALLOWED_HOSTS.includes(location.hostname)){
+  document.documentElement.innerHTML='';
+  return; 
+}
 
 
-    const img=new Image();
-    Object.defineProperty(img,'id',{get(){
-      document.body.innerHTML='';
-    }});
-    console.log('%c ',img);
-  })();
+document.addEventListener('contextmenu',e=>e.preventDefault(),{passive:false});
 
 
-  if(document.body.innerHTML===''){
-    throw new Error('Execution halted');
+document.addEventListener('keydown',e=>{
+  const blockedCombo=(e.ctrlKey||e.metaKey)&&['u','s','c','x','a','i','j','p','o','v'].includes(e.key.toLowerCase());
+  const blockedKey=['F12','F6'].includes(e.key);
+  if(blockedCombo||blockedKey){e.preventDefault();}
+});
+
+
+let warned=false;
+setInterval(()=>{
+  const threshold=160;
+  if(((window.outerWidth-window.innerWidth)>threshold||(window.outerHeight-window.innerHeight)>threshold)&&!warned){
+    warned=true;
+    document.body.innerHTML='';
   }
+},500);
+
+
+const img=new Image();
+Object.defineProperty(img,'id',{get(){
+  document.body.innerHTML='';
+}});
+console.log('%c ',img);
+})();
+
+
+if(document.body.innerHTML===''){
+throw new Error('Execution halted');
+}
 
     const overlay=document.querySelector('.overlay');
     const mainContent=document.getElementById('mainContent');
@@ -161,7 +161,7 @@
         if (listening) {
   activityText = `<img src="Spotify.png" alt="Spotify" style="height:1.3em;vertical-align:middle;margin-right:.35em;filter:drop-shadow(0 0 4px #ffb6b6);">${listening.details} – ${listening.state}`;
 } else if (playing) {
-  activityText = `🎮 ${playing.name}`;
+  activityText = `<img src="Steam.png" alt="Steam" style="height:1.3em;vertical-align:middle;margin-right:.35em;filter:drop-shadow(0 0 4px #ffb6b6);">${playing.name}`;
 } else if (custom && custom.state) {
   activityText = custom.state;
 }
