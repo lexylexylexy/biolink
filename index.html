@@ -3,64 +3,198 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>idkwhospagethisis</title>
+  <title>Aura Farming</title>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-  <link rel="icon" href="your-pfp.webp" type="image/webp">
+  <link rel="icon" href="flag.png" type="image/webp">
   <style>
-
-    *{margin:0;padding:0;box-sizing:border-box}
-    html,body{height:100%;overflow:hidden;font-family:'Press Start 2P',cursive}
-    body{display:flex;flex-direction:column;align-items:center;background:#1a0000}
-
-    video.bg-video{position:absolute;top:0;left:0;width:100vw;height:100vh;object-fit:cover;z-index:-1;display:none}
-
-    .overlay{position:absolute;inset:0;background:rgba(0,0,0,.6);display:flex;justify-content:center;align-items:center;cursor:pointer;color:#ffdddd;font-size:1.5rem;font-weight:bold;z-index:10}
-
-    .container{position:relative;z-index:20;display:none;flex-direction:column;align-items:center;text-align:center;color:#ffdddd;gap:1rem;padding:3rem;background:rgba(0,0,0,.4);border-radius:12px;border:1px solid #ffdddd;backdrop-filter:blur(8px);width:33vw;margin-top:3rem}
-    .pfp{width:128px;height:128px;border-radius:50%;background:gray;background-size:cover;background-position:center;border:2px solid #ffdddd}
-
-    .quote{font-size:1.2rem;color:#971616;white-space:normal;border-right:2px solid #ffdddd;animation:blink-caret .8s step-end infinite;min-height:1.4rem;overflow:hidden}
-    @keyframes blink-caret{from,to{border-color:transparent}50%{border-color:#ffdddd}}
-
-    .volume-toggle{position:absolute;top:1rem;left:1rem;background:transparent;border:1px solid #ffdddd;padding:.5rem;border-radius:12px;cursor:pointer;z-index:30;display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:#ffdddd}
-
-    .social-links{display:flex;gap:1rem;margin-top:.5rem;justify-content:center}
-    .social-links a{text-decoration:none;transition:transform .3s}
-    .social-icon{width:40px;height:40px;object-fit:contain;filter:drop-shadow(0 0 4px #fff);transition:transform .3s}
-    .social-icon:hover{transform:scale(1.1)}
-
-    .discord-presence{display:none;align-items:center;background:rgba(255,255,255,.08);padding:1rem;border-radius:16px;margin-top:2rem;width:33vw;box-shadow:0 0 12px rgba(0,0,0,.4);backdrop-filter:blur(10px);color:#fff;border:1px solid #fff}
-    .discord-avatar{width:56px;height:56px;border-radius:50%;border:2px solid #ffdddd;margin-right:1rem}
-    .discord-info{display:flex;flex-direction:column}
-    .discord-username{display:flex;align-items:center;font-weight:bold;font-size:1.1rem;gap:1rem}
-    .status-dot{width:12px;height:12px;border-radius:50%;display:inline-block}
-    .online{background:#43b581}.idle{background:#faa61a}.dnd{background:#f04747}.offline{background:#747f8d}
-    .discord-activity{font-size:.9rem;color:#ccc}
-    .discord-badges{display:flex;gap:.25rem}
-    .discord-badges img{height:18px;width:18px;border-radius:4px}
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Press Start 2P', cursive;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #1a0000;
+    }
+    video.bg-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+      display: none;
+    }
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      color: #cd2143;
+      font-size: 1.5rem;
+      font-weight: bold;
+      z-index: 10;
+    }
+    .container {
+      position: relative;
+      z-index: 20;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      color: #cd2143;
+      gap: 1rem;
+      padding: 3rem;
+      background: rgba(0,0,0,.4);
+      border-radius: 12px;
+      border: 1px solid #cd2143;
+      backdrop-filter: blur(8px);
+      width: 33vw;
+      margin-top: 3rem;
+    }
+    .pfp {
+      width: 128px;
+      height: 128px;
+      border-radius: 50%;
+      background: rgb(223, 93, 93);
+      background-size: cover;
+      background-position: center;
+      border: 2px solid #cd2143;
+    }
+    .quote {
+      font-size: 1.2rem;
+      color: #e06d6d;
+      white-space: normal;
+      border-right: 2px solid #e06d6d;
+      animation: blink-caret .8s step-end infinite;
+      min-height: 1.4rem;
+      overflow: hidden;
+    }
+    @keyframes blink-caret {
+      from, to { border-color: transparent; }
+      50% { border-color: #e06d6d; }
+    }
+    .volume-toggle {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: transparent;
+      border: 1px solid #cd2143;
+      padding: .5rem;
+      border-radius: 12px;
+      cursor: pointer;
+      z-index: 30;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: #ffdddd;
+    }
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: .5rem;
+      justify-content: center;
+    }
+    .social-links a {
+      text-decoration: none;
+      transition: transform .3s;
+    }
+    .social-icon {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 4px #cd2143);
+      transition: transform .3s;
+    }
+    .social-icon:hover {
+      transform: scale(1.1);
+    }
+    .discord-presence {
+      display: none;
+      align-items: center;
+      background: rgba(255,255,255,.08);
+      padding: 1rem;
+      border-radius: 16px;
+      margin-top: 2rem;
+      width: 33vw;
+      box-shadow: 0 0 12px rgba(0,0,0,.4);
+      backdrop-filter: blur(10px);
+      color: #ff0026;
+      border: 1px solid #cd2143;
+    }
+    .discord-avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: 2px solid #cd2143;
+      margin-right: 1rem;
+    }
+    .discord-info {
+      display: flex;
+      flex-direction: column;
+    }
+    .discord-username {
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+      font-size: 1.1rem;
+      gap: 1rem;
+    }
+    .status-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .online { background: #43b581; }
+    .idle { background: #faa61a; }
+    .dnd { background: #f04747; }
+    .offline { background: #747f8d; }
+    .discord-activity {
+      font-size: .9rem;
+      color: rgb(255, 251, 251)143;
+    }
+    .discord-badges {
+      display: flex;
+      gap: .25rem;
+    }
+    .discord-badges img {
+      height: 18px;
+      width: 18px;
+      border-radius: 4px;
+    }
   </style>
 </head>
 <body>
   <video class="bg-video" loop id="bgVideo">
     <source src="your-background.mp4" type="video/mp4">
-    Your browser does not support the video tag.
   </video>
   <div class="overlay" onclick="startExperience()">[ click anywhere ]</div>
   <button class="volume-toggle" onclick="toggleVolume()">🔊</button>
   <div class="container" id="mainContent">
     <div class="pfp" style="background-image:url('spin.gif')"></div>
-    <h2>Lexy</h2>
+    <h2>Lexy💫</h2>
     <div class="quote" id="quote"></div>
     <div class="social-links">
       <a href="https://discord.com/users/938646514018943006" target="_blank" title="Discord"><img src="discord-icon.png" alt="Discord" class="social-icon"></a>
       <a href="https://www.roblox.com/users/163703254/profile" target="_blank" title="Roblox"><img src="roblox-icon.svg" alt="Roblox" class="social-icon"></a>
+      <a href="https://open.spotify.com/user/lexyboykid" target="_blank" title="Spotify"><img src="Spotify.png" alt="Roblox" class="social-icon"></a>
+      <a href="https://steamcommunity.com/profiles/76561198803167074/" target="_blank" title="Steam"><img src="Steam.png" alt="Roblox" class="social-icon"></a>
     </div>
   </div>
-  <div class="discord-presence" id="presenceCard">
-    <img id="discordAvatar" class="discord-avatar" src="" alt="Avatar">
+  <div class="discord-presence" id="presenceCard" style= "height: 170px; min-height: 170px;background-image:url('banner.gif')">
+    <img id="discordAvatar" class="discord-avatar" src="" alt="Avatar" style= "height: 120px; min-height: 120px; width: 120px; min-width: 120px;">
     <div class="discord-info">
-      <div id="discordUsername" class="discord-username"><span id="usernameText">Loading...</span><span id="badgeContainer" class="discord-badges"></span><span class="status-dot offline" id="statusDot"></span></div>
-      <div id="discordStatus" class="discord-activity">Loading activity...</div>
+      <div id="discordUsername" class="discord-username"><span id="usernameText" style= "font-size: 24px;">Loading...</span><span id="badgeContainer" class="discord-badges"></span><span class="status-dot offline" id="statusDot"></span></div>
+      <div id="discordStatus" class="discord-activity" style= "font-size: 20px;">Loading activity...</div>
     </div>
   </div>
   <script>
@@ -105,45 +239,102 @@
     throw new Error('Execution halted');
   }
 
-  const overlay=document.querySelector('.overlay');
-  const mainContent=document.getElementById('mainContent');
-  const bgVideo=document.getElementById('bgVideo');
-  const quoteEl=document.getElementById('quote');
-  const presenceCard=document.getElementById('presenceCard');
+    const overlay = document.querySelector('.overlay');
+    const mainContent = document.getElementById('mainContent');
+    const bgVideo = document.getElementById('bgVideo');
+    const quoteEl = document.getElementById('quote');
+    const presenceCard = document.getElementById('presenceCard');
 
-  const quotes=["I like feet","$LexyXeri","My dihh to veiny","But ever since I was a kid, I was always the winner. - 🐐"];
-  let quoteIndex=0;
-  let isMuted=false;
+    const quotes = ["I like feet","$LexiXeri","My dihh to veiny 💔","But ever since I was a kid, I was always the winner. - 🐐"];
+    let quoteIndex = 0;
+    let isMuted = false;
 
-  function startExperience(){
-    overlay.style.display='none';
-    mainContent.style.display='flex';
-    presenceCard.style.display='flex';
-    bgVideo.style.display='block';
-    bgVideo.muted=isMuted;
-    bgVideo.play();
-  }
+    function startExperience() {
+      overlay.style.display = 'none';
+      mainContent.style.display = 'flex';
+      presenceCard.style.display = 'flex';
+      bgVideo.style.display = 'block';
+      bgVideo.muted = isMuted;
+      bgVideo.play();
+    }
 
-  function toggleVolume(){
-    isMuted=!isMuted;
-    bgVideo.muted=isMuted;
-    document.querySelector('.volume-toggle').textContent=isMuted?'🔇':'🔊';
-  }
+    function toggleVolume() {
+      isMuted = !isMuted;
+      bgVideo.muted = isMuted;
+      document.querySelector('.volume-toggle').textContent = isMuted ? '🔇' : '🔊';
+    }
 
-  const TYPE_SPEED=80,DELETE_SPEED=40,HOLD_TIME=2000;
-  async function typeText(text,el){for(let i=0;i<text.length;i++){el.textContent+=text.charAt(i);await new Promise(r=>setTimeout(r,TYPE_SPEED));}}
-  async function deleteText(el){while(el.textContent.length){el.textContent=el.textContent.slice(0,-1);await new Promise(r=>setTimeout(r,DELETE_SPEED));}}
-  async function runQuoteLoop(){while(true){const current=quotes[quoteIndex%quotes.length];await typeText(current,quoteEl);await new Promise(r=>setTimeout(r,HOLD_TIME));await deleteText(quoteEl);quoteIndex++;}}
-  runQuoteLoop();
+    const TYPE_SPEED = 80, DELETE_SPEED = 40, HOLD_TIME = 2000;
+    async function typeText(text, el) {
+      for (let i = 0; i < text.length; i++) {
+        el.textContent += text.charAt(i);
+        await new Promise(r => setTimeout(r, TYPE_SPEED));
+      }
+    }
+    async function deleteText(el) {
+      while (el.textContent.length) {
+        el.textContent = el.textContent.slice(0, -1);
+        await new Promise(r => setTimeout(r, DELETE_SPEED));
+      }
+    }
+    async function runQuoteLoop() {
+      while (true) {
+        const current = quotes[quoteIndex % quotes.length];
+        await typeText(current, quoteEl);
+        await new Promise(r => setTimeout(r, HOLD_TIME));
+        await deleteText(quoteEl);
+        quoteIndex++;
+      }
+    }
+    runQuoteLoop();
 
+    const discordUserId = '938646514018943006';
+    const badgeMap = { 1: { name: 'Discord Staff', icon: 'https://cdn.jsdelivr.net/gh/rauenzi/discord-badges/icons/staff.svg' }, 2: { name: 'Partnered Server Owner', icon: 'https://cdn.jsdelivr.net/gh/rauenzi/discord-badges/icons/partner.svg' }, 4: { name: 'HypeSquad Events', icon: 'https://cdn.jsdelivr.net/gh/rauenzi/discord-badges/icons/hypesquad.svg' }, 8: { name: 'Bug Hunter Level 1', icon: 'https://cdn.jsdelivr.net/gh/rauenzi/discord-badges/icons/bughunter1.svg' }, 64: { name: 'HypeSquad Bravery', icon: 'https://cdn.jsdelivr.net/gh/rauenzi/discord-badges/icons/bravery.svg' }, 128: { name: 'HypeSquad Brilliance', icon: 'https://cdn.discordapp.com/badge-icons/011940fd013da3f7fb926e4a1cd2e618.png' }, 256: { name: 'HypeSquad Balance', icon: 'https://cdn.discordapp.com/badge-icons/3aa41de486fa12454c3761e8e223442e.png' }, 512: { name: 'Early Supporter', icon: 'https://cdn.jsdelivr.net/gh/rauenzi/discord-badges/icons/supporter.svg' }, 16384: { name: 'Bug Hunter Level 2', icon: 'https://cdn.jsdelivr.net/gh/rauenzi/discord-badges/icons/bughunter2.svg' }, 4194304: { name: 'Active Developer', icon: 'https://cdn.discordapp.com/badge-icons/2ba85e8026a8614b640c2837bcdfe21b.png' } };
+    function renderBadges(flags) {
+      const container = document.getElementById('badgeContainer');
+      container.innerHTML = '';
+      Object.keys(badgeMap).forEach(bit => {
+        if (flags & bit) {
+          const badge = badgeMap[bit];
+          const img = document.createElement('img');
+          img.src = badge.icon;
+          img.title = badge.name;
+          container.appendChild(img);
+        }
+      });
+    }
+    async function fetchDiscordPresence() {
+      try {
+        const res = await fetch(`https://api.lanyard.rest/v1/users/${discordUserId}`);
+        const data = await res.json();
+        if (!data.success) return;
+        const user = data.data.discord_user;
+        const status = data.data.discord_status;
+        const activities = data.data.activities;
+        const avatarUrl = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`;
+        document.getElementById('discordAvatar').src = avatarUrl;
+        document.getElementById('usernameText').textContent = user.username;
+        document.getElementById('statusDot').className = `status-dot ${status}`;
+        renderBadges(user.public_flags);
 
-  const discordUserId='938646514018943006';
-  const badgeMap={1:{name:'Discord Staff',icon:'https://cdn.jsdelivr.net/gh/rauenzi/discord-badges/icons/staff.svg'},2:{name:'Partnered Server Owner',icon:'https://cdn.jsdelivr.net/gh/rauenzi/discord-badges/icons/partner.svg'},4:{name:'HypeSquad Events',icon:'https://cdn.jsdelivr.net/gh/rauenzi/discord-badges/icons/hypesquad.svg'},8:{name:'Bug Hunter Level 1',icon:'https://cdn.jsdelivr.net/gh/rauenzi/discord-badges/icons/bughunter1.svg'},64:{name:'HypeSquad Bravery',icon:'https://cdn.jsdelivr.net/gh/rauenzi/discord-badges/icons/bravery.svg'},128:{name:'HypeSquad Brilliance',icon:'https://cdn.discordapp.com/badge-icons/011940fd013da3f7fb926e4a1cd2e618.png'},256:{name:'HypeSquad Balance',icon:'https://cdn.jsdelivr.net/gh/rauenzi/discord-badges/icons/balance.svg'},512:{name:'Early Supporter',icon:'https://cdn.jsdelivr.net/gh/rauenzi/discord-badges/icons/supporter.svg'},16384:{name:'Bug Hunter Level 2',icon:'https://cdn.jsdelivr.net/gh/rauenzi/discord-badges/icons/bughunter2.svg'},4194304:{name:'Active Developer',icon:'https://cdn.jsdelivr.net/gh/rauenzi/discord-badges/icons/activedev.svg'}};
-  function renderBadges(flags){const container=document.getElementById('badgeContainer');container.innerHTML='';Object.keys(badgeMap).forEach(bit=>{if(flags&bit){const badge=badgeMap[bit];const img=document.createElement('img');img.src=badge.icon;img.title=badge.name;container.appendChild(img);}});}
-  async function fetchDiscordPresence(){try{const res=await fetch(`https://api.lanyard.rest/v1/users/${discordUserId}`);const data=await res.json();if(!data.success)return;const user=data.data.discord_user;const status=data.data.discord_status;const activities=data.data.activities;const avatarUrl=`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`;document.getElementById('discordAvatar').src=avatarUrl;document.getElementById('usernameText').textContent=user.username;document.getElementById('statusDot').className=`status-dot ${status}`;renderBadges(user.public_flags);let activityText='currently doing nothing';const playing=activities.find(a=>a.type===0);const listening=activities.find(a=>a.type===2&&a.name==='Spotify');const custom=activities.find(a=>a.type===4);if(listening)activityText=`Listening to ${listening.details}`;else if(playing)activityText=`Playing ${playing.name}`;else if(custom&&custom.state)activityText=custom.state;document.getElementById('discordStatus').textContent=activityText;}catch(err){console.error('Failed to fetch Discord presence:',err);}}
-  fetchDiscordPresence();
-  setInterval(fetchDiscordPresence,15000);
+        let activityText = 'Not doing anything';
+        const playing = activities.find(a => a.type === 0);
+        const listening = activities.find(a => a.type === 2 && a.name === 'Spotify');
+        const custom = activities.find(a => a.type === 4);
+
+        if (listening) activityText = `Listening to ${listening.details}`;
+        else if (playing) activityText = `Playing ${playing.name}`;
+        else if (custom && custom.state) activityText = custom.state;
+
+        document.getElementById('discordStatus').textContent = activityText;
+      } catch (err) {
+        console.error('Failed to fetch Discord presence:', err);
+      }
+    }
+    fetchDiscordPresence();
+    setInterval(fetchDiscordPresence, 15000);
   </script>
-  <div style="margin-top:2rem;padding:1rem;border:1px solid #ffdddd;border-radius:12px;color:#ffdddd;font-family:'Press Start 2P',cursive;background:rgba(0,0,0,.4);text-align:center">Homemade Biolink made by idkwhoiam2 :D</div>
+  <div style="margin-top:2rem;padding:1rem;border:1px solid #cd2143;border-radius:12px;color:#ffffff;font-family:'Press Start 2P',cursive;background:rgba(65, 18, 18, 0.4);text-align:center">made by me
+  </div>
 </body>
 </html>
