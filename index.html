@@ -65,6 +65,29 @@
       <div id="discordStatus" class="discord-activity" style="font-size:20px;">Loading activity...</div>
     </div>
   </div>
+  <div id="spotifyWidgetWrapper" style="
+  display: none;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background: rgba(255, 0, 0, 0.05);
+  border-radius: 16px;
+  border: 1px solid #cd2143;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 0 8px rgba(170, 7, 39, 0.774);
+  margin-top: 1rem;
+">
+  <iframe id="spotifyWidget" style="
+    border-radius: 12px;
+    width: 100%;
+    width: 550px;
+    min-width: 550px;
+    height: 160px;
+    min-height: 160px;
+    border: none;
+  " frameborder="0" allowtransparency="true" allow="encrypted-media" src=""></iframe>
+</div>
+
 
   <script>
     (function(){
@@ -158,15 +181,32 @@ throw new Error('Execution halted');
         const listening = activities.find(a => a.type === 2 && a.name === 'Spotify');
         const custom = activities.find(a => a.type === 4);
 
-        if (listening) {
-  activityText = `<img src="Spotify.png" alt="Spotify" style="height:1.3em;vertical-align:middle;margin-right:.35em;filter:drop-shadow(0 0 4px #ffb6b6);">${listening.details} – ${listening.state}`;
+        const widgetWrapper = document.getElementById('spotifyWidgetWrapper');
+const widgetFrame = document.getElementById('spotifyWidget');
+
+if (listening) {
+  const trackId = listening.sync_id;
+  activityText = `<img src="Spotify.png" alt="Spotify" style="height:1em;vertical-align:middle;margin-right:.35em;">${listening.details} – ${listening.state}`;
+
+  // Show Spotify widget
+  if (trackId) {
+    widgetFrame.src = `https://open.spotify.com/embed/track/${trackId}`;
+    widgetWrapper.style.display = 'flex';
+  } else {
+    widgetWrapper.style.display = 'none';
+  }
 } else if (playing) {
-  activityText = `<img src="Steam.png" alt="Steam" style="height:1.3em;vertical-align:middle;margin-right:.35em;filter:drop-shadow(0 0 4px #ffb6b6);">${playing.name}`;
+  activityText = `<img src="Steam.png" alt="Steam" style="height:1em;vertical-align:middle;margin-right:.35em;"> ${playing.name}`;
+  widgetWrapper.style.display = 'none';
 } else if (custom && custom.state) {
   activityText = custom.state;
+  widgetWrapper.style.display = 'none';
+} else {
+  widgetWrapper.style.display = 'none';
 }
 
 document.getElementById('discordStatus').innerHTML = activityText;
+
         const badgeContainer = document.getElementById('badgeContainer');
         badgeContainer.innerHTML = '';
         Object.entries(badgeMap).forEach(([bit, url]) => {
