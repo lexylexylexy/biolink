@@ -65,7 +65,7 @@
       <div id="discordStatus" class="discord-activity" style="font-size:20px;">Loading activity...</div>
     </div>
   </div>
-  <div id="spotifyWidgetWrapper" style="
+ <div id="spotifyWidgetWrapper" style="
   display: none;
   justify-content: center;
   align-items: center;
@@ -88,9 +88,8 @@
   " frameborder="0" allowtransparency="true" allow="encrypted-media" src=""></iframe>
 </div>
 
-
   <script>
-    (function(){
+        (function(){
 const ALLOWED_HOSTS=['lexylexylexy.github.io','localhost']; 
 if(!ALLOWED_HOSTS.includes(location.hostname)){
   document.documentElement.innerHTML='';
@@ -141,7 +140,8 @@ throw new Error('Execution halted');
     let quoteIndex=0;
     let isMuted=false;
 
-    function startExperience(){overlay.style.display='none';mainContent.style.display='flex';presenceCard.style.display='flex';bgVideo.style.display='block';bgVideo.muted=isMuted;bgVideo.play();}
+    function startExperience(){overlay.style.display='none';mainContent.style.display='flex';presenceCard.style.display='flex';bgVideo.style.display='block';bgVideo.muted=isMuted;bgVideo.play();  fetchPresence();
+  setInterval(fetchPresence, 15000);}
     function toggleVolume(){isMuted=!isMuted;bgVideo.muted=isMuted;document.querySelector('.volume-toggle').textContent=isMuted?'🔇':'🔊';}
 
     const TYPE_SPEED=80,DELETE_SPEED=40,HOLD_TIME=2000;
@@ -164,7 +164,19 @@ throw new Error('Execution halted');
 
     const discordUserId='938646514018943006';
     const badgeMap={1:'https://cdn.jsdelivr.net/gh/rauenzi/discord-badges/icons/staff.svg',2:'https://cdn.jsdelivr.net/gh/rauenzi/discord-badges/icons/partner.svg',4:'https://cdn.jsdelivr.net/gh/rauenzi/discord-badges/icons/hypesquad.svg',8:'https://cdn.jsdelivr.net/gh/rauenzi/discord-badges/icons/bughunter1.svg',64:'https://cdn.jsdelivr.net/gh/rauenzi/discord-badges/icons/hypesquad-events.svg',128:'https://cdn.jsdelivr.net/gh/rauenzi/discord-badges/icons/bughunter2.svg',256:'https://cdn.jsdelivr.net/gh/rauenzi/discord-badges/icons/early-supporter.svg',512:'https://cdn.jsdelivr.net/gh/rauenzi/discord-badges/icons/team-user.svg',16384:'https://cdn.jsdelivr.net/gh/rauenzi/discord-badges/icons/verified-bot-dev.svg'};
-
+    function renderBadges(flags) {
+      const container = document.getElementById('badgeContainer');
+      container.innerHTML = '';
+      Object.keys(badgeMap).forEach(bit => {
+        if (flags & bit) {
+          const badge = badgeMap[bit];
+          const img = document.createElement('img');
+          img.src = badge.icon;
+          img.title = badge.name;
+          container.appendChild(img);
+        }
+      });
+    }
     async function fetchPresence(){
       try {
         const res = await fetch(`https://api.lanyard.rest/v1/users/${discordUserId}`);
@@ -176,7 +188,7 @@ throw new Error('Execution halted');
         const dot = document.getElementById('statusDot');
         dot.className = 'status-dot ' + (discord_status || 'offline');
 
-        let activityText = 'Not doing anything';
+        let activityText = 'Doing nothing';
         const playing = activities.find(a => a.type === 0);
         const listening = activities.find(a => a.type === 2 && a.name === 'Spotify');
         const custom = activities.find(a => a.type === 4);
@@ -186,7 +198,7 @@ const widgetFrame = document.getElementById('spotifyWidget');
 
 if (listening) {
   const trackId = listening.sync_id;
-  activityText = `<img src="Spotify.png" alt="Spotify" style="height:1em;vertical-align:middle;margin-right:.35em;">${listening.details} – ${listening.state}`;
+  activityText = `<img src="Spotify.png" alt="Spotify" style="height:1em;vertical-align:middle;margin-right:.35em;width:30px;height:30px;object-fit:contain;filter:drop-shadow(0 0 4px #cd2143);transition:transform .3s;">${listening.details} – ${listening.state}`;
 
   // Show Spotify widget
   if (trackId) {
@@ -196,7 +208,7 @@ if (listening) {
     widgetWrapper.style.display = 'none';
   }
 } else if (playing) {
-  activityText = `<img src="Steam.png" alt="Steam" style="height:1em;vertical-align:middle;margin-right:.35em;"> ${playing.name}`;
+  activityText = `<img src="Steam.png" alt="Steam" style="height:1em;vertical-align:middle;margin-right:.35em;width:30px;height:30px;object-fit:contain;filter:drop-shadow(0 0 4px #cd2143);transition:transform .3s;"> ${playing.name}`;
   widgetWrapper.style.display = 'none';
 } else if (custom && custom.state) {
   activityText = custom.state;
@@ -221,10 +233,9 @@ document.getElementById('discordStatus').innerHTML = activityText;
         document.getElementById('discordStatus').textContent = 'Error loading presence';
       }
     }
-    fetchPresence();
-    setInterval(fetchPresence, 15000);
-  </script>
-    <div style="margin-top:2rem;padding:1rem;border:1px solid #cd2143;border-radius:12px;color:#ffffff;font-family:'Press Start 2P',cursive;background:rgba(65, 18, 18, 0.4);text-align:center">made by me
-    </div>
+
+    setInterval(fetchPresence, 15000);  </script>
+  <div style="margin-top:2rem;padding:1rem;border:1px solid #cd2143;border-radius:12px;color:#ffffff;font-family:'Press Start 2P',cursive;background:rgba(65, 18, 18, 0.4);text-align:center">made by me
+  </div>
 </body>
 </html>
